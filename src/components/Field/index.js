@@ -19,7 +19,7 @@ export default props => {
 
   const fillField = () => {
     if (!isOpen) {
-      return hasFlag ? <Flag /> : null;
+      return hasFlag ? <Flag doAnimation /> : null;
     }
 
     if (hasMine) {
