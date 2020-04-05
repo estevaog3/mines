@@ -106,11 +106,14 @@ export default class App extends Component {
     return isGameWon;
   };
 
-  handlePress = position => {
-    if (this.state.gameState !== 'running') {
+  handlePress = (position) => {
+    const {i, j} = position;
+    if (
+      this.state.gameState !== 'running' ||
+      this.state.board[i][j].props.hasFlag
+    ) {
       return;
     }
-    const {i, j} = position;
     if (this.state.board[i][j].props.hasMine) {
       this.handleGameOver(position);
     } else if (
