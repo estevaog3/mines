@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "debug:dev": "react-native run-android --scheme 'My project scheme' --configuration 'Debug'"
+    "debug:dev": "react-native run-android --scheme 'My project scheme' --configuration 'Debug'",
+    "release:android": "cd android && ./gradlew bundleRelease && cd .. && react-native run-android --variant=release"
   },
   "dependencies": {
     "react": "16.9.0",
