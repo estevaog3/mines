@@ -18,7 +18,7 @@ const offsets = [
   [-1, -1],
 ];
 
-const sendMessage = msg => {
+const sendMessage = (msg) => {
   if (Platform.OS === 'ios') {
     Alert.alert('Attention', msg);
   } else {
@@ -27,9 +27,9 @@ const sendMessage = msg => {
 };
 
 export default class App extends Component {
-  handleGameOver = position => {
-    const newBoard = this.state.board.map(row => {
-      return row.map(field => {
+  handleGameOver = (position) => {
+    const newBoard = this.state.board.map((row) => {
+      return row.map((field) => {
         if (field.props.hasMine) {
           return (
             <Field
@@ -55,10 +55,10 @@ export default class App extends Component {
     this.setState({board: newBoard});
   };
 
-  doBFS = position => {
-    const newBoard = this.state.board.map(row => row.slice());
+  doBFS = (position) => {
+    const newBoard = this.state.board.map((row) => row.slice());
     let queue = [position];
-    let isVisited = [...Array(newBoard.length)].map(_ => [
+    let isVisited = [...Array(newBoard.length)].map((_) => [
       ...Array(newBoard[0].length),
     ]);
     while (queue.length > 0) {
@@ -91,7 +91,7 @@ export default class App extends Component {
     }
   };
 
-  isGameWon = board => {
+  isGameWon = (board) => {
     let isGameWon = true;
     for (let i = 0; i < board.length && isGameWon; i++) {
       for (let j = 0; j < board[0].length && isGameWon; j++) {
@@ -124,11 +124,11 @@ export default class App extends Component {
     }
   };
 
-  handleLongPress = position => {
+  handleLongPress = (position) => {
     if (this.state.gameState !== 'running') {
       return;
     }
-    const newBoard = this.state.board.map(row => row.slice());
+    const newBoard = this.state.board.map((row) => row.slice());
     let {i, j} = position;
     newBoard[i][j] = (
       <Field
@@ -163,7 +163,7 @@ export default class App extends Component {
     return numberOfAdjacentMines;
   };
 
-  countMines = board => {
+  countMines = (board) => {
     const newBoard = board.map((row, i) => {
       return row.map((field, j) => {
         return (
@@ -181,7 +181,7 @@ export default class App extends Component {
     return newBoard;
   };
 
-  generateBoard = difficulty => {
+  generateBoard = (difficulty) => {
     const proportionOfMines =
       difficulty === 'easy' ? 0.1 : difficulty === 'normal' ? 0.2 : 0.3;
 
@@ -199,7 +199,7 @@ export default class App extends Component {
     return {board: this.countMines(board), numberOfMines};
   };
 
-  endGame = isWin => {
+  endGame = (isWin) => {
     if (isWin) {
       this.setState({gameState: 'won'});
       sendMessage('Parabéns, você venceu!');
@@ -219,7 +219,7 @@ export default class App extends Component {
     }
   };
 
-  createNewState = difficulty => {
+  createNewState = (difficulty) => {
     return {
       ...this.generateBoard(difficulty),
       difficulty,

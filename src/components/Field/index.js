@@ -5,7 +5,7 @@ import style from './styles';
 import Mine from '../Mine/index';
 import Flag from '../Flag/index';
 
-export default props => {
+export default (props) => {
   const {
     isOpen,
     hasMine,
